@@ -9,19 +9,25 @@ const option = {
     useUnifiedTopology: true 
 }
 
+app.get('/', (req, res) => {
+
+    res.send("Hello world");
+
+})
+
 mongoose.connect(
     process.env.DB_CONNECTION,
     option,
     (err) => {
-        console.log(err)
+        console.log(err);
         
         if(err) {
-            console.log("Error" + err)
+            console.log("Error" + err);
             return;
         }
-        console.log("database is connected")
+        console.log("database is connected");
         
         app.listen(3000, () => {
-            console.log("application is running too")
+            console.log("application is running too");
         })
     })
