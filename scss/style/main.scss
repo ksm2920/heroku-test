@@ -3,7 +3,7 @@
     padding: 0;
 }
 body {
-    background-color: orange;
+    background-color:steelblue;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
 }
@@ -36,6 +36,7 @@ body {
 
 .todo-input {
     input {
+        margin-top: 20px;
         width: 92%;
         border: none;
         border-radius: 4px;

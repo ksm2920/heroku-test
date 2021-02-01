@@ -14,28 +14,23 @@
     <div class="todo-box">
         <h2>To-Do List</h2>
         <div class="todo-content">
-            <%- include("add-todo.ejs") %>
             <ul class="todo-list">
-                <li class="todo-list-item">
-                    <div class="todo-list-item-name">Some Text</div>
-                    <a href="" class="edit">
-                        <span class="fas fa-pen"></span>
-                    </a>
-                    <a href="" class="delete">
-                        <span class="fas fa-times"></span>
-                    </a>
-                </li>
+                <% data.forEach(details => { %>
+                    <li class="todo-list-item">
+                        <div class="todo-list-item-name"><%= details.task %></div>
+                        <a href="/edit/<%= details._id %>" class="edit">
+                            <span class="fas fa-pen"></span>
+                        </a>
+                        <a href="/remove/<%= details._id %>" class="delete">
+                            <span class="fas fa-times"></span>
+                        </a>
+                    </li>
+                <% }) %>
             </ul>
+                
+                <%- include("add-todo.ejs") %>
+                
         </div>
     </div>
-    <!-- <h1>Todo List</h1>
-        
-        <% for(let i=0; i<data.length; i++) { %>
-            
-            <div>  
-                <%= data[i].task %> 
-            </div>
-            
-            <% } %> -->
-        </body>
-        </html>
+</body>
+</html>
