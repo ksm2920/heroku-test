@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: orange;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+.todo-box {
+    color: black;
+    background:lightgray;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 600px;
+    padding: 30px;
+    transform: translate(-50%,-50%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    h2 {
+        padding-bottom: 20px;
+        font-size: 2em;
+    }
+    
+    ul {
+        list-style: none;
+    }
+}
+.todo-content {
+    width: 500px;
+}
+
+.todo-input {
+    input {
+        width: 92%;
+        border: none;
+        border-radius: 4px;
+        height: 30px;
+    }
+    button {
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 5px;
+        background-color: gray;
+        height: 30px;
+    }
+}
+
+.todo-list-item {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    form {
+        width: 100%;
+        display: flex;
+    }
+    input {
+        flex-grow: 2;
+        margin-right: 20px;
+        border: none;
+        border-radius: 5px;
+    }
+    button {
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px;
+    }
+    .cancel {
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px;
+        // background-color: rgb(223, 43, 43);
+        margin-left: 5px;
+    }
+    div {
+        flex-grow: 2;
+    }
+    .edit {
+        color:gray;
+        margin-right: 10px;
+        cursor:pointer;
+        text-decoration: none;
+    }
+    .delete {
+        color:gray;
+        margin-right: 5px;
+        cursor:pointer;
+        text-decoration: none;
+    }
+}
