@@ -7,29 +7,37 @@ router.get('/', async(req, res) => {
     
     const data = await Todo.find();
     console.log(data);
-    res.send(data);
+    res.render('index.ejs', {data:data, error:"empty"})
     
 })
 
 router.post('/', async (req, res) => {
     const todo = await new Todo({
-        title: req.body.title 
+        task: req.body.task 
     }).save();
-    res.send(todo)
+    res.redirect('/');
 })
 
-router.put("/:id", async (req, res) => {
-    const todo = await Todo.updateOne({
-        title: req.body.title
+router.get("/edit/:id", async (req, res) => {
+    const todo = await Todo.findOne({
+        id: req.params.id
     });
-    res.send(todo);
+    res.render('todo-edit.ejs', {todo:todo})
    
 })
 
-router.delete("/:id", async (req, res) => {
-    const todo = await Todo.deleteOne({_id: req.params.id})
-    res.send(todo);
-   
+router.post("/edit", async (req,res) => {
+    
+    console.log(req.query)
+    await Todo.updateOne({_id:req.body.id}, {task: req.body.task})
+    
+    res.redirect("/")
+})
+
+router.get("/delete/:id", async (req, res) => {
+    await Todo.deleteOne({_id: req.params.id})
+    res.redirect('/');
+    
 })
 
 
