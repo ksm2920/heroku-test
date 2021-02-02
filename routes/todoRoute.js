@@ -12,31 +12,36 @@ router.get('/', async(req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const todo = await new Todo({
+    await new Todo({
         task: req.body.task 
     }).save();
     res.redirect('/');
 })
 
 router.get("/edit/:id", async (req, res) => {
-    const todo = await Todo.findOne({
-        id: req.params.id
-    });
-    res.render('todo-edit.ejs', {todo:todo})
+    
+    const data = await Todo.find();
+    const id = req.params.id;
+    
+    res.render('todo-edit.ejs', {data:data, id:id})
+    
+})
+
+router.post("/edit/:id", async (req,res) => {
+    const id = req.params.id;
+
+    await Todo.findByIdAndUpdate(id, {task: req.body.task}, () => {  
+        res.redirect("/")
+    })
+    
    
 })
 
-router.post("/edit", async (req,res) => {
-    
-    console.log(req.query)
-    await Todo.updateOne({_id:req.body.id}, {task: req.body.task})
-    
-    res.redirect("/")
-})
-
-router.get("/delete/:id", async (req, res) => {
-    await Todo.deleteOne({_id: req.params.id})
-    res.redirect('/');
+router.get("/remove/:id", async (req, res) => {
+    const id = req.params.id;
+    await Todo.findByIdAndRemove(id, {task: req.body.task}, () => {  
+        res.redirect("/")
+    })
     
 })
 

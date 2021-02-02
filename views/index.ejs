@@ -9,27 +9,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="todo-box">
         <h2>To-Do List</h2>
         <div class="todo-content">
-            <ul class="todo-list">
-                <% data.forEach(details => { %>
-                    <li class="todo-list-item">
-                        <div class="todo-list-item-name"><%= details.task %></div>
-                        <a href="/edit/<%= details._id %>" class="edit">
-                            <span class="fas fa-pen"></span>
-                        </a>
-                        <a href="/remove/<%= details._id %>" class="delete">
-                            <span class="fas fa-times"></span>
-                        </a>
-                    </li>
-                <% }) %>
-            </ul>
-                
-                <%- include("add-todo.ejs") %>
-                
+            <%- include('add-todo.ejs') %>
+                <form action="/" method="post" class="todo-input">
+                    <input type="text" name="task">
+                    <button type="submit"><span class="fas fa-plus"></span></button>
+                </form>        
         </div>
     </div>
 </body>
