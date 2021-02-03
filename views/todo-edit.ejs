@@ -13,16 +13,25 @@
     <div class="todo-box">
         <h2>To-Do List</h2>
         <div class="todo-content">
-            <ul class="todo-list">
-                <% data.forEach(details => { %>
-                    <% if (details._id == id) { %>
-                        <li class="todo-list-item">
-                            <form action="/edit/<%= details._id %>" method="post">
-                                <input type="text" value="<%= details.task %>" name="task">
-                                <button type="submit"><i class="fas fa-check"></i></button>
-                                <a href="/" class="cancel"><i class="fas fa-undo-alt"></i></a>
-                            </form>
-                        </li>
+            <form action="/" method="post" class="todo-input">
+                <input type="text" name="task">
+                <button type="submit"><span class="fas fa-plus"></span></button>
+            </form>
+            <div class="sort">
+                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=-1">Latest</a>
+                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=1">Oldest</a>
+            </div>
+            <div class="list">  
+                <ul class="todo-list">
+                    <% data.forEach(details => { %>
+                        <% if (details._id == id) { %>
+                            <li class="todo-list-item">
+                                <form action="/edit/<%= details._id %>" method="post">
+                                    <input type="text" value="<%= details.task %>" name="task">
+                                    <button type="submit"><i class="fas fa-check"></i></button>
+                                    <a href="/" class="cancel"><i class="fas fa-undo-alt"></i></a>
+                                </form>
+                         </li>
                         <% } else { %>
                             <li class="todo-list-item">
                                 <div class="todo-list-item-name"><%= details.task %></div>
@@ -33,12 +42,20 @@
                             </li>
                         <% } %>
                     <% }) %>
-            </ul>
-            <form action="/" method="post" class="todo-input">
-            <input type="text" name="task">
-            <button type="submit"><span class="fas fa-plus"></span></button>
-            </form> 
+                </ul>
+            </div> 
         </div>
+        <% if(totalDataPart !== dataToShow/dataToShowPerPage) { %>
+
+            <a href="/?page=<%=(dataToShow/dataToShowPerPage)+1%>">
+            Show more
+            </a>
+        <% } else { %>
+            <a href="/?page=1">
+            Show less
+            </a>
+
+        <% } %>
     </div>
 </body>
 </html>

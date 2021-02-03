@@ -13,12 +13,30 @@
     <div class="todo-box">
         <h2>To-Do List</h2>
         <div class="todo-content">
-            <%- include('add-todo.ejs') %>
-                <form action="/" method="post" class="todo-input">
-                    <input type="text" name="task">
-                    <button type="submit"><span class="fas fa-plus"></span></button>
-                </form>        
+            <form action="/" method="post" class="todo-input">
+                <input type="text" name="task">
+                <button type="submit"><span class="fas fa-plus"></span></button>
+            </form>
+            <div class="sort">
+                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=-1">Latest</a>
+                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=1">Oldest</a>
+            </div>
+            <div class="list">    
+                <%- include('add-todo.ejs') %>  
+            </div>  
         </div>
-    </div>
-</body>
-</html>
+        
+        <% if(totalDataPart !== dataToShow/dataToShowPerPage) { %>
+            
+            <a href="/?page=<%=(dataToShow/dataToShowPerPage)+1%>">
+                Show more
+            </a>
+            <% } else { %>
+                <a href="/?page=1">
+                    Show less
+                </a>
+                
+                <% } %>
+            </div>
+        </body>
+        </html>
