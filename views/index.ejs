@@ -17,13 +17,16 @@
                 <input type="text" name="task">
                 <button type="submit"><span class="fas fa-plus"></span></button>
             </form>
+            <p class="error"><%=error%></p>
+            <p class="success"><%=success%></p>
             <div class="sort">
                 <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=-1">Newest</a>
                 <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=1">Oldest</a>
             </div>
             <div class="list">    
                 <%- include('add-todo.ejs') %>  
-            </div>  
+            </div>
+
         </div>
         <div class="show">
         <% if(totalDataPart !== dataToShow/dataToShowPerPage) { %>
@@ -40,4 +43,4 @@
             </div>
             </div>
         </body>
-        </html>
+    </html>

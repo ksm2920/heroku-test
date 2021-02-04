@@ -19,7 +19,7 @@ router.get('/', async(req, res) => {
     
     const data = await Todo.find().limit(dataToShow).sort({date: sorted})
     
-    res.render('index.ejs', {data, totalData, totalDataPart, dataToShow, dataToShowPerPage, error:"empty"})   
+    res.render('index.ejs', {data, totalData, totalDataPart, dataToShow, dataToShowPerPage, success: req.query.success, error:req.query.error})   
 })
 
 router.post('/', async (req, res) => {
@@ -27,14 +27,18 @@ router.post('/', async (req, res) => {
 
     const dataToShowPerPage = 2;
     const dataToShow = dataToShowPerPage * page
-
-    await new Todo({
-        task: req.body.task 
-    }).save();
     
-    await Todo.find().limit(dataToShow)
-    
-    res.redirect("/");
+    if(req.body.task) {
+        await new Todo({
+            task: req.body.task 
+        }).save();
+        
+        await Todo.find().limit(dataToShow)
+        
+        res.redirect("/?success=A task was added successfully!");
+    } else {
+        res.redirect("/?error=Please add a task!");
+    }
     
 })
 
@@ -42,7 +46,7 @@ router.get("/edit/:id", async (req, res) => {
     
     // const data = await Todo.find();
     const id = req.params.id;
-
+    
     const sorted = +req.query.sorted || 1;
     const page = +req.query.page || 1;
     
@@ -67,7 +71,7 @@ router.post("/edit/:id", async (req,res) => {
     const totalData = await Todo.find().countDocuments();
     const dataToShowPerPage = 2;
     const totalDataPart = Math.ceil(totalData/dataToShowPerPage);
-
+    
     await Todo.findByIdAndUpdate(id, {task: req.body.task}, () => {  
         Todo.find().countDocuments();
         res.redirect("/?page=" + totalDataPart)
@@ -77,12 +81,12 @@ router.post("/edit/:id", async (req,res) => {
 
 router.get("/remove/:id", async (req, res) => {
     const id = req.params.id;
-
+    
     const totalData = await Todo.find().countDocuments();
     const dataToShowPerPage = 2;
     const totalDataPart = Math.ceil(totalData/dataToShowPerPage);
     console.log(totalDataPart)
-
+    
     await Todo.findByIdAndRemove(id, {task: req.body.task}, () => {  
         res.redirect("/?page=" + totalDataPart)
     })
