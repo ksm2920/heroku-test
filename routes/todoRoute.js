@@ -63,14 +63,14 @@ router.get("/edit/:id", async (req, res) => {
 
 router.post("/edit/:id", async (req,res) => {
     const id = req.params.id;
-    const page = +req.query.page || 1;
     
+    const totalData = await Todo.find().countDocuments();
     const dataToShowPerPage = 2;
-    const dataToShow = dataToShowPerPage * page
+    const totalDataPart = Math.ceil(totalData/dataToShowPerPage);
 
     await Todo.findByIdAndUpdate(id, {task: req.body.task}, () => {  
-        Todo.find().limit(dataToShow)
-        res.redirect("/")
+        Todo.find().countDocuments();
+        res.redirect("/?page=" + totalDataPart)
     })     
     
 })
@@ -81,6 +81,7 @@ router.get("/remove/:id", async (req, res) => {
     const totalData = await Todo.find().countDocuments();
     const dataToShowPerPage = 2;
     const totalDataPart = Math.ceil(totalData/dataToShowPerPage);
+    console.log(totalDataPart)
 
     await Todo.findByIdAndRemove(id, {task: req.body.task}, () => {  
         res.redirect("/?page=" + totalDataPart)
