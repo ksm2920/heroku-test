@@ -2,7 +2,7 @@
     <% data.forEach(details => { %>
         <li class="todo-list-item">
             <div class="todo-list-item-name"><%= details.task %></div>
-            <a href="/edit/<%= details._id %>" class="edit">
+            <a href="/edit/<%= details._id %>?page=<%=(dataToShow/dataToShowPerPage)%>" class="edit">
                 <span class="fas fa-pen"></span>
             </a>
             <a href="/remove/<%= details._id %>" class="remove">

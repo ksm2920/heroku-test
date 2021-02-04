@@ -18,7 +18,7 @@
                 <button type="submit"><span class="fas fa-plus"></span></button>
             </form>
             <div class="sort">
-                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=-1">Latest</a>
+                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=-1">Newest</a>
                 <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=1">Oldest</a>
             </div>
             <div class="list">  
@@ -29,13 +29,13 @@
                                 <form action="/edit/<%= details._id %>" method="post">
                                     <input type="text" value="<%= details.task %>" name="task">
                                     <button type="submit"><i class="fas fa-check"></i></button>
-                                    <a href="/" class="cancel"><i class="fas fa-undo-alt"></i></a>
+                                    <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>" class="cancel"><i class="fas fa-undo-alt"></i></a>
                                 </form>
                          </li>
                         <% } else { %>
                             <li class="todo-list-item">
                                 <div class="todo-list-item-name"><%= details.task %></div>
-                                <a href="/edit/<%= details._id %>" class="edit"> <span class="fas fa-pen"></span>
+                                <a href="/edit/<%= details._id %>?page=<%=(dataToShow/dataToShowPerPage)%>" class="edit"> <span class="fas fa-pen"></span>
                                 </a>
                                 <a href="/remove/<%= details._id %>" class="remove"> <span class="fas fa-times"></span>
                                 </a>
