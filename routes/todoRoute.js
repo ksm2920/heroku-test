@@ -7,86 +7,70 @@ router.get('/', async(req, res) => {
     
     const sorted = +req.query.sorted || 1;
     const page = +req.query.page || 1;
+    const editId = req.query.editId || -1;
+    
+    const totalItems = await Todo.find().countDocuments();
+    
+    const itemsToShowPerPage = 2;
+    
+    const maxPageNr = Math.ceil(totalItems/itemsToShowPerPage)
+    
+    const itemsToShow = itemsToShowPerPage * page
+    
+    const items = await Todo.find().limit(itemsToShow).sort({date: sorted})
     
     
-    const totalData = await Todo.find().countDocuments();
-    
-    const dataToShowPerPage = 2;
-    
-    const totalDataPart = Math.ceil(totalData/dataToShowPerPage)
-    
-    const dataToShow = dataToShowPerPage * page
-    
-    const data = await Todo.find().limit(dataToShow).sort({date: sorted})
-    
-    res.render('index.ejs', {data, totalData, totalDataPart, dataToShow, dataToShowPerPage, error:"empty"})   
+    res.render('index.ejs', {
+        editId, 
+        items, 
+        page,
+        maxPageNr, 
+        sorted,
+        success: req.query.success, 
+        error:req.query.error})   
 })
 
 router.post('/', async (req, res) => {
     const page = +req.query.page || 1;
 
-    const dataToShowPerPage = 2;
-    const dataToShow = dataToShowPerPage * page
-
-    await new Todo({
-        task: req.body.task 
-    }).save();
+    const itemsToShowPerPage = 2;
+    const itemsToShow = itemsToShowPerPage * page
     
-    await Todo.find().limit(dataToShow)
-    
-    res.redirect("/");
-    
-})
-
-router.get("/edit/:id", async (req, res) => {
-    
-    // const data = await Todo.find();
-    const id = req.params.id;
-
-    const sorted = +req.query.sorted || 1;
-    const page = +req.query.page || 1;
-    
-    
-    const totalData = await Todo.find().countDocuments();
-    
-    const dataToShowPerPage = 2;
-    
-    const totalDataPart = Math.ceil(totalData/dataToShowPerPage)
-    
-    const dataToShow = dataToShowPerPage * page
-    
-    const data = await Todo.find().limit(dataToShow).sort({date: sorted})
-    
-    res.render('todo-edit.ejs', {data, totalData, totalDataPart, dataToShow, dataToShowPerPage, id:id})
+    if(req.body.task) {
+        await new Todo({
+            task: req.body.task 
+        }).save();
+        
+        await Todo.find().limit(itemsToShow)
+        
+        res.redirect("/?success=A task was added successfully!");
+    } else {
+        res.redirect("/?error=Please add a task!");
+    }
     
 })
 
 router.post("/edit/:id", async (req,res) => {
     const id = req.params.id;
     const page = +req.query.page || 1;
+    // const totalData = await Todo.find().countDocuments();
+    // const itemsToShowPerPage = 2;
+    // const totalDataPart = Math.ceil(totalData/itemsToShowPerPage);
     
-    const dataToShowPerPage = 2;
-    const dataToShow = dataToShowPerPage * page
-
     await Todo.findByIdAndUpdate(id, {task: req.body.task}, () => {  
-        Todo.find().limit(dataToShow)
-        res.redirect("/")
+        Todo.find().countDocuments();
+        res.redirect("/?page=" + page + "&sorted=" + req.query.sorted)
     })     
     
 })
 
 router.get("/remove/:id", async (req, res) => {
     const id = req.params.id;
-
-    const totalData = await Todo.find().countDocuments();
-    const dataToShowPerPage = 2;
-    const totalDataPart = Math.ceil(totalData/dataToShowPerPage);
-
+    
     await Todo.findByIdAndRemove(id, {task: req.body.task}, () => {  
-        res.redirect("/?page=" + totalDataPart)
+        res.redirect("/?page=" + req.query.page + "&sorted=" + req.query.sorted)
     })
     
 })
-
 
 module.exports = router;
