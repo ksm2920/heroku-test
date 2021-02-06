@@ -12,8 +12,11 @@
                 <p class="error"><%=error%></p>
                 <p class="success"><%=success%></p>
                 <div class="sort">
-                    <a href="/?page=<%=page%>&sorted=-1">Newest</a>
-                    <a href="/?page=<%=page%>&sorted=1">Oldest</a>
+                    <% if(sorted == 1) { %>
+                    <a href="/?page=<%=page%>&sorted=-1">Oldest first <span class="fas fa-arrow-up"></span></a>
+                    <% } else if (sorted == -1) { %></page>
+                    <a href="/?page=<%=page%>&sorted=1">Newest first <span class="fas fa-arrow-down"></span></a>
+                    <% } %>
                 </div>
                 <div class="list">
                     <%- include('todo-item.ejs') %>  
