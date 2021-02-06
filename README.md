@@ -1,6 +1,6 @@
 # Welcome to my first Nodejs project!
 
-A task is to build TODO list app with using Express, Mongo and EJS.
+This is a school assignment. A task is to build TODO list app with using Express, Mongo and EJS.
 
 ## Functionality
 
