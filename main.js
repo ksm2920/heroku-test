@@ -25,12 +25,6 @@ const option = {
     useUnifiedTopology: true 
 }
 
-// app.get('/', (req, res) => {
-
-//     res.send("Hello world");
-
-// })
-
 mongoose.connect(
     process.env.DB_CONNECTION,
     option,

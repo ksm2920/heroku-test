@@ -21,12 +21,10 @@
             </div>
 
             <div class="show">
-                <% if(maxPageNr >= page) { %>
+                <% if(maxPageNr > page) { %>
                     <a href="/?page=<%=page+1%>&sorted=<%=sorted%>">SHOW MORE</a>
                 <% } else if (maxPageNr > 0 && maxPageNr < page) { %>
                     <a href="/?page=1&sorted=<%=sorted%>">SHOW LESS</a>
-                <% } else { %>
-                    <p></p>
                 <% } %>
             </div>
         </div>
