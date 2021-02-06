@@ -5,7 +5,7 @@ let router = express.Router();
 
 router.get('/', async(req, res) => {
     
-    const sorted = +req.query.sorted || 1;
+    const sorted = +req.query.sorted || -1;
     const page = +req.query.page || 1;
     const editId = req.query.editId || -1;
     
