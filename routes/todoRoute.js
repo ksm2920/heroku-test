@@ -13,12 +13,11 @@ router.get('/', async(req, res) => {
     
     const itemsToShowPerPage = 2;
     
-    const maxPageNr = Math.ceil(totalItems/itemsToShowPerPage)
+    const maxPageNr = Math.ceil(totalItems/itemsToShowPerPage);
     
-    const itemsToShow = itemsToShowPerPage * page
+    const itemsToShow = itemsToShowPerPage * page;
     
-    const items = await Todo.find().limit(itemsToShow).sort({date: sorted})
-    
+    const items = await Todo.find().limit(itemsToShow).sort({date: sorted});
     
     res.render('index.ejs', {
         editId, 
@@ -27,21 +26,23 @@ router.get('/', async(req, res) => {
         maxPageNr, 
         sorted,
         success: req.query.success, 
-        error:req.query.error})   
+        error:req.query.error})
+    ;  
+
 })
 
 router.post('/', async (req, res) => {
     const page = +req.query.page || 1;
 
     const itemsToShowPerPage = 2;
-    const itemsToShow = itemsToShowPerPage * page
+    const itemsToShow = itemsToShowPerPage * page;
     
     if(req.body.task) {
         await new Todo({
             task: req.body.task 
         }).save();
         
-        await Todo.find().limit(itemsToShow)
+        await Todo.find().limit(itemsToShow);
         
         res.redirect("/?success=A task was added successfully!");
     } else {
@@ -53,13 +54,10 @@ router.post('/', async (req, res) => {
 router.post("/edit/:id", async (req,res) => {
     const id = req.params.id;
     const page = +req.query.page || 1;
-    // const totalData = await Todo.find().countDocuments();
-    // const itemsToShowPerPage = 2;
-    // const totalDataPart = Math.ceil(totalData/itemsToShowPerPage);
     
     await Todo.findByIdAndUpdate(id, {task: req.body.task}, () => {  
         Todo.find().countDocuments();
-        res.redirect("/?page=" + page + "&sorted=" + req.query.sorted)
+        res.redirect("/?page=" + page + "&sorted=" + req.query.sorted);
     })     
     
 })
@@ -68,7 +66,7 @@ router.get("/remove/:id", async (req, res) => {
     const id = req.params.id;
     
     await Todo.findByIdAndRemove(id, {task: req.body.task}, () => {  
-        res.redirect("/?page=" + req.query.page + "&sorted=" + req.query.sorted)
+        res.redirect("/?page=" + req.query.page + "&sorted=" + req.query.sorted);
     })
     
 })
