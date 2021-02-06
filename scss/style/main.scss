@@ -86,6 +86,27 @@ body {
         border: none;
         border-radius: 5px;
     }
+
+    button {
+        color:white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px;
+        background-color: green;
+    }
+    .cancel {
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px;
+        background-color: gray;
+        margin-left: 5px;
+        font-size: 12px;
+    }
+
     div {
         flex-grow: 2;
     }

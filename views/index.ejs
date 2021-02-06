@@ -1,46 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
-    <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="todo-box">
-        <h2>To-Do List</h2>
-        <div class="todo-content">
-            <form action="/" method="post" class="todo-input">
-                <input type="text" name="task">
-                <button type="submit"><span class="fas fa-plus"></span></button>
-            </form>
-            <p class="error"><%=error%></p>
-            <p class="success"><%=success%></p>
-            <div class="sort">
-                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=-1">Newest</a>
-                <a href="/?page=<%=(dataToShow/dataToShowPerPage)%>&&sorted=1">Oldest</a>
-            </div>
-            <div class="list">    
-                <%- include('add-todo.ejs') %>  
+    <%- include('head.ejs') %>  
+    <body>
+        <div class="todo-box">
+            <h2>To-Do List</h2>
+            <div class="todo-content">
+                <form action="/" method="post" class="todo-input">
+                    <input type="text" name="task">
+                    <button type="submit"><span class="fas fa-plus"></span></button>
+                </form>
+                <p class="error"><%=error%></p>
+                <p class="success"><%=success%></p>
+                <div class="sort">
+                    <a href="/?page=<%=page%>&sorted=-1">Newest</a>
+                    <a href="/?page=<%=page%>&sorted=1">Oldest</a>
+                </div>
+                <div class="list">
+                    <%- include('todo-item.ejs') %>  
+                </div>
             </div>
 
-        </div>
-        <div class="show">
-        <% if(totalDataPart !== dataToShow/dataToShowPerPage) { %>
-            
-            <a href="/?page=<%=(dataToShow/dataToShowPerPage)+1%>">
-                SHOW MORE
-            </a>
-            <% } else { %>
-                <a href="/?page=1">
-                    SHOW LESS
-                </a>
-                
+            <div class="show">
+                <% if(maxPageNr >= page) { %>
+                    <a href="/?page=<%=page+1%>&sorted=<%=sorted%>">SHOW MORE</a>
+                <% } else if (maxPageNr > 0 && maxPageNr < page) { %>
+                    <a href="/?page=1&sorted=<%=sorted%>">SHOW LESS</a>
+                <% } else { %>
+                    <p></p>
                 <% } %>
             </div>
-            </div>
-        </body>
-    </html>
+        </div>
+    </body>
+</html>
+
+
