@@ -8,9 +8,11 @@ A task is to build TODO list app with using Express, Mongo and EJS.
 
 # Installation
 
-## Nodemon
+## Npm Package
 
-- npm i nodemon
+### express, mongoose, ejs, body-parser, dotenv, node-sass-middleware, nodemon
+
+- npm install
 
 **After successful installation**
 
