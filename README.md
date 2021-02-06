@@ -19,3 +19,5 @@ express, mongoose, ejs, body-parser, dotenv, node-sass-middleware, nodemon
 Run from the uppgifter-nodejs folder: 
 
 `npm start`
+
+Browse to http://localhost:3000
