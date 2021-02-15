@@ -1,8 +1,8 @@
-const User = require("../model/user");
-const bcrypt = require("bcrypt");
+const User = require('../model/user');
+const bcrypt = require('bcrypt');
 
 const registerRender = (req, res) => {
-    res.render("register.ejs", {err:""});
+    res.render('register.ejs', {err:""});
 }
 
 const registerSubmit = async(req, res) => {
@@ -17,11 +17,11 @@ const registerSubmit = async(req, res) => {
             email: email,
             password: hashedPassword
         }).save();
-        
-        return res.redirect("/login");
+
+        return res.redirect('/login');
     }
     catch {
-        if(err) return res.render("register.ejs", {err:err})
+        if(err) return res.render('register.ejs', {err:err})
     }
 }
 
