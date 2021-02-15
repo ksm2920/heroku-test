@@ -29,7 +29,7 @@ const loginSubmit = async(req, res) => {
 
         if(!jwtTokenCookie) {
             
-            res.cookie("jwtToken", jwtToken, {maxAge: 36000000, httpOnly: true});
+            res.cookie("jwtToken", jwtToken, {maxAge: 3600000, httpOnly: true});
         }
 
         return res.redirect('/');
