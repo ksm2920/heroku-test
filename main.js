@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const router = require('./routes/todoRoute');
+
+const todoRouter = require('./routes/todoRoute');
+const userRouter = require('./routes/userRoute');
+
 const nodeSass = require('node-sass-middleware');
 require('dotenv').config();
 
@@ -18,7 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'ejs');
 
-app.use('/', router);
+app.use('/', todoRouter);
+app.use('/', userRouter);
 
 const option = {
     useNewUrlParser: true,
