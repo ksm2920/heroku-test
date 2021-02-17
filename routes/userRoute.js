@@ -6,6 +6,7 @@ const {registerRender, registerSubmit} = require('../controller/registerControll
 const {loginRender, loginSubmit} = require('../controller/loginController');
 const {resetRender, resetSubmit, resetParams, resetFormSubmit} = require('../controller/resetPassController');
 
+
 router.get('/register', registerRender);
 
 router.post('/register', registerSubmit);
