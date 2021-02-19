@@ -2,8 +2,8 @@
 <html lang="en">
     <%- include('head.ejs') %>  
     <body>
-        Welcome <%= user.username %>
-        <a href="/logout">Logout</a>
+        <div class="user">Welcome <span id="username"><%= user.username %></span> <button><a id="logout" href="/logout">Log Out</a></button></div>
+        
         <div class="todo-box">
             <h2>To-Do List</h2>
             <div class="todo-content">
