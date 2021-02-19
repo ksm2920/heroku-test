@@ -6,9 +6,9 @@ let router = express.Router();
 const { todoRender, todoSubmit, todoEdit, todoRemove} = require('../controller/todoController');
 
 
-router.get('/todo', verifyUser, todoRender);
+router.get('/', verifyUser, todoRender);
 
-router.post('/todo', verifyUser, todoSubmit);
+router.post('/', verifyUser, todoSubmit);
 
 router.post('/edit/:id', verifyUser, todoEdit);
 
