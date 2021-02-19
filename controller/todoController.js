@@ -1,13 +1,15 @@
 const Todo = require('../model/todo');
+const User = require('../model/user');
 
 
 const todoRender = async(req, res) => {
-    
+    const user = await User.findOne({_id:req.user.user._id});
+
     const sorted = +req.query.sorted || -1;
     const page = +req.query.page || 1;
     const editId = req.query.editId || -1;
     
-    const totalItems = await Todo.find().countDocuments();
+    const totalItems = await User.findOne({_id:req.user.user._id}).populate("todoList").countDocuments();
     
     const itemsToShowPerPage = 2;
     
@@ -15,9 +17,15 @@ const todoRender = async(req, res) => {
     
     const itemsToShow = itemsToShowPerPage * page;
     
-    const items = await Todo.find().limit(itemsToShow).sort({date: sorted});
+    const userWithTodoList = await User.findOne({_id:req.user.user._id}).populate("todoList")
+
+    const items = userWithTodoList.todoList;
+
+    //.limit(itemsToShow).sort({date: sorted});
+
     
     res.render('index.ejs', {
+        user,
         editId, 
         items, 
         page,
@@ -36,9 +44,13 @@ const todoSubmit = async (req, res) => {
     const itemsToShow = itemsToShowPerPage * page;
     
     if(req.body.task) {
-        await new Todo({
+        const todo = await new Todo({
             task: req.body.task 
         }).save();
+
+        const user = await User.findOne({_id:req.user.user._id});
+
+        user.addTodoList(todo._id);
         
         await Todo.find().limit(itemsToShow);
         

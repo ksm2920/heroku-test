@@ -4,7 +4,7 @@ const verifyUser = require('../middleware/verifyUser');
 
 const router = express.Router();
 
-router.get('/', verifyUser, homeRender);
+router.get('/home', verifyUser, homeRender);
 
 router.get('/logout', (req, res) => {
     res.clearCookie('jwtToken').redirect('/login');
