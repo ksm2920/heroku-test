@@ -3,37 +3,42 @@ const User = require('../model/user');
 
 
 const todoRender = async(req, res) => {
-    const user = await User.findOne({_id:req.user.user._id});
+    //const user = await User.findOne({_id:req.user.user._id});
 
     const sorted = +req.query.sorted || -1;
     const page = +req.query.page || 1;
     const editId = req.query.editId || -1;
-    
-    const totalItems = await User.findOne({_id:req.user.user._id}).populate("todoList").countDocuments();
-    
     const itemsToShowPerPage = 2;
-    
-    const maxPageNr = Math.ceil(totalItems/itemsToShowPerPage);
-    
     const itemsToShow = itemsToShowPerPage * page;
+
+    const user = await User.findOne({_id:req.user.user._id}).populate(
+        {
+            path: 'todoList',
+            options: { 
+                sort: { date: sorted },
+                limit: itemsToShow
+            }
+        });
+
+
+    console.log(user);
     
-    const userWithTodoList = await User.findOne({_id:req.user.user._id}).populate("todoList")
+    const reachedMaxItems = itemsToShow > user.todoList.length;
 
-    const items = userWithTodoList.todoList;
+    const items = user.todoList;
 
-    //.limit(itemsToShow).sort({date: sorted});
+    console.log(items);
 
-    
     res.render('index.ejs', {
         user,
         editId, 
-        items, 
+        items,
         page,
-        maxPageNr, 
+        reachedMaxItems, 
         sorted,
         success: req.query.success, 
-        error:req.query.error})
-    ;  
+        error:req.query.error,
+    });  
 
 }
 
