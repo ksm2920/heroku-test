@@ -2,6 +2,8 @@
 <html lang="en">
     <%- include('head.ejs') %>  
     <body>
+        <div class="user">Welcome <span id="username"><%= user.username %></span> <button><a id="logout" href="/logout">Log Out</a></button></div>
+        
         <div class="todo-box">
             <h2>To-Do List</h2>
             <div class="todo-content">
@@ -19,15 +21,17 @@
                     <% } %>
                 </div>
                 <div class="list">
+                    <% if(!items || items.length === 0) { %>
+                        <P class="no-item">No items to show</P>
+                    <% } else { %>                                            
                     <%- include('todo-item.ejs') %>  
+                    <% } %>
                 </div>
             </div>
 
             <div class="show">
-                <% if(maxPageNr > page) { %>
+                <% if( !reachedMaxItems ) { %>
                     <a href="/?page=<%=page+1%>&sorted=<%=sorted%>">SHOW MORE</a>
-                <% } else if (maxPageNr > 0 && maxPageNr < page) { %>
-                    <a href="/?page=1&sorted=<%=sorted%>">SHOW LESS</a>
                 <% } %>
             </div>
         </div>
