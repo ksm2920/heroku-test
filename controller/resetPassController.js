@@ -16,7 +16,7 @@ const transport = nodemailer.createTransport({
 })
 
 const resetRender = (req, res) => {
-    res.render('reset.ejs', {err:""});
+    res.render('reset.ejs', {error:""});
 }
 
 const resetSubmit = async(req, res) => {
@@ -24,7 +24,7 @@ const resetSubmit = async(req, res) => {
 
     const user = await User.findOne({email:email});
 
-    if(!user) return res.redirect('/register');
+    if(!user) return res.render('register.ejs', {error: "You don't have account. Please sign up first!"});
 
     const token = crypto.randomBytes(32).toString("hex");
 
@@ -50,10 +50,10 @@ const resetParams = async(req, res) => {
 
     if(!user) return res.redirect('/register');
     
-    res.render('resetPasswordForm.ejs', {err:"", email:user.email})
+    res.render('resetPasswordForm.ejs', {error:"", email:user.email})
     }
     catch(err) {
-        res.render('reset.ejs', {err:"Try again"})
+        res.render('reset.ejs', {error:"Try again"})
     }
 }
 

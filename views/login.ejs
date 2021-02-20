@@ -1,10 +1,15 @@
 <form action="/login" method="post">
-    <input type="text" name="username" id="" placeholder="Username">
-    <input type="password" name="password" id="" placeholder="Password">
-    <button type="submit">Login</button>
-
-    <span>Don't have an account?</span>
-    <a href="/register">Register</a>
-
-    <a href="/reset">Forgot password?</a>
+    <div>
+        <input type="text" name="username" id="" placeholder="Username">
+        <input type="password" name="password" id="" placeholder="Password">
+        <button type="submit">Login</button>
+    </div>   
+    <% if(error) { %>
+        <div><%= error %></div>
+    <% } %>
+    <div>
+        <span>Don't have an account?</span>
+        <a href="/register">Register</a>
+        <a href="/reset">Forgot password?</a>
+    </div>
 </form>

@@ -5,37 +5,42 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const loginRender = (req, res) => {
-    res.render('login.ejs', {err:""})
+    res.render('login.ejs', {error:""})
 }
 
 const loginSubmit = async(req, res) => {
     const {username, password} = req.body;
+    
+    if(!username || !password) 
+    return res.render('login.ejs', {error:"Please put your username and password."})
 
-    const user = await User.findOne({username:username});
-
-    if(!user) return res.redirect('/register');
-
-    const validUser = await bcrypt.compare(password, user.password);
-
-    console.log(validUser);
-
-    if(!validUser) return res.redirect('/login');
-
-    const jwtToken = await jwt.sign({user:user}, process.env.SECRET_KEY)
-
-    if(jwtToken) {
-       
-        const jwtTokenCookie = req.cookies.jwtToken;
-
-        if(!jwtTokenCookie) {
+    try {
+        const user = await User.findOne({username:username});
+        
+        if(!user) return res.redirect('/register');
+        
+        const validUser = await bcrypt.compare(password, user.password);
+        
+        if(!validUser)  return res.render('login.ejs', {error:"Wrong password"})
+        
+        const jwtToken = await jwt.sign({user:user}, process.env.SECRET_KEY)
+        
+        if(jwtToken) {
             
-            res.cookie("jwtToken", jwtToken, {maxAge: 3600000, httpOnly: true});
+            const jwtTokenCookie = req.cookies.jwtToken;
+            
+            if(!jwtTokenCookie) {
+                
+                res.cookie("jwtToken", jwtToken, {maxAge: 3600000, httpOnly: true});
+            }
+            
+            return res.redirect('/');
         }
-
-        return res.redirect('/');
+        
+        return res.redirect('/login');
+    } catch(err) {
+        return res.render('login.ejs', {error:"System error " + err})
     }
- 
-    return res.redirect('/login');
 }
 
 module.exports = {
