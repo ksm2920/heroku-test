@@ -3,7 +3,7 @@ const verifyUser = require('../middleware/verifyUser');
 
 let router = express.Router();
 
-const { todoRender, todoSubmit, todoEdit, todoRemove} = require('../controller/todoController');
+const {todoRender, todoSubmit, todoEdit, todoRemove} = require('../controller/todoController');
 
 
 router.get('/', verifyUser, todoRender);
