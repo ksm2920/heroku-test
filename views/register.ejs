@@ -2,19 +2,19 @@
 <html lang="en">
     <%- include('head.ejs') %>  
     <body>
-<form action="/register" method="post">
-    <div class="register-input">
-        <input type="text" name="username" id="" placeholder="Username">
-        <input type="email" name="email" id="" placeholder="Email">
-        <input type="password" name="password" id="" placeholder="Password">
-        <button type="submit">Register</button>
-    </div>
-    <% if(error) { %>
-        <div class="error"><%= error %></div>
-    <% } %>
-   <div class="register-link">
-        <p>Already have an account? <a href="/login">Login</a></p>
-    </div>
-</form>
-</body>
+        <form action="/register" method="post">
+            <div class="register-input">
+                <input type="text" name="username" id="" placeholder="Username">
+                <input type="email" name="email" id="" placeholder="Email">
+                <input type="password" name="password" id="" placeholder="Password">
+                <button type="submit">Register</button>
+            </div>
+            <% if(error) { %>
+                <div class="error"><%= error %></div>
+            <% } %>
+            <div class="register-link">
+                <p>Already have an account? <a href="/login">Login</a></p>
+            </div>
+        </form>
+    </body>
 </html>
