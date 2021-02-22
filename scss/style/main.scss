@@ -1,7 +1,4 @@
 @import 'todo';
-@import 'login';
-@import 'reset';
-@import 'register';
 
 * {
     margin: 0;
@@ -18,15 +15,48 @@ body {
     color: red;
 }
 
-// form {
-//     color: black;
-//     position: absolute;
-//     top:50%;
-//     left: 50%;
-//     width: 600px;
-//     padding: 30px;
-//     transform: translate(-50%,-50%);
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center; 
-// }
+.register-input, .login-input, 
+.send-link {
+    color: black;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 600px;
+    padding: 30px;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+    input {
+        margin-top: 10px;
+        width: 50%;
+        border: none;
+        border-radius: 4px;
+        height: 40px;
+    }
+    button {
+        margin-top: 10px;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 0 11px;
+        background-color: black;
+        height: 40px;
+        width: 50%;
+    }
+}
+
+.login-link, .register-link {
+    color: black;
+    position: absolute;
+    top: 65%;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+
+

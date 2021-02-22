@@ -3,17 +3,16 @@
     <%- include('head.ejs') %>  
     <body>
         <form action="/login" method="post">
-            <div>
+            <div  class="login-input">
                 <input type="text" name="username" id="" placeholder="Username">
                 <input type="password" name="password" id="" placeholder="Password">
                 <button type="submit">Login</button>
             </div>   
             <% if(error) { %>
-            <div><%= error %></div>
+                <div class="error"><%= error %></div>
             <% } %>
-            <div>
-                <span>Don't have an account?</span>
-                <a href="/register">Register</a>
+            <div class="login-link">
+                <p>Don't have an account? <a href="/register">Register</a></p>
                 <a href="/reset">Forgot password?</a>
             </div>
         </form>
