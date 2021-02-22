@@ -3,6 +3,7 @@ const User = require('../model/user');
 
 
 const todoRender = async(req, res) => {
+    console.log("todoRender");
 
     const sorted = +req.query.sorted || -1;
     const page = +req.query.page || 1;

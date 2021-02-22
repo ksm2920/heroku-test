@@ -9,6 +9,7 @@ const loginRender = (req, res) => {
     const jwtTokenCookie = req.cookies.jwtToken;
             
     if(jwtTokenCookie) {
+        console.info("redirect to /");
         return res.redirect('/');
     }
     res.render('login.ejs', {error:""})
