@@ -1,27 +1,11 @@
+@import 'todo';
+@import 'login';
+@import 'reset';
+@import 'register';
+
 * {
     margin: 0;
     padding: 0;
-}
-
-.user {
-    margin: 10px;
-    float: right; 
-}
-
-button {
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color:black;
-    height: 30px;
-}
-
-#logout{
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -30,137 +14,19 @@ body {
     font-weight: bold;
 }
 
-.todo-box {
-    color: black;
-    background:lightgray;
-    position: absolute;
-    top:50%;
-    left: 50%;
-    width: 600px;
-    padding: 30px;
-    transform: translate(-50%,-50%);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    h2 {
-        padding-bottom: 20px;
-        font-size: 2em;
-    }
-     ul {
-        list-style: none;
-    }
-}
-
-.todo-content {
-    width: 500px;
-}
-
-.todo-input {
-    input {
-        margin-top: 10px;
-        width: 92%;
-        border: none;
-        border-radius: 4px;
-        height: 40px;
-    }
-    button {
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        padding: 0 11px;
-        background-color: gray;
-        height: 40px;
-    }
-}
-
-.sort {
-    float: right;
-    margin-top: 20px;
-    a {
-        text-decoration: none;
-        color: black;
-        cursor: pointer;
-        margin-left: 10px;
-    }
-}
-
-.list {
-    margin-top: 50px;
-}
-
-.todo-list-item {
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background: white;
-    display: flex;
-    flex-direction: row;
-    form {
-        width: 100%;
-        display: flex;
-    }
-    input {
-        flex-grow: 2;
-        margin-right: 20px;
-        border: none;
-        border-radius: 5px;
-    }
-    button {
-        color:white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        padding: 5px;
-        background-color: green;
-    }
-    .cancel {
-        color: white;
-        text-decoration: none;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        padding: 5px;
-        background-color: gray;
-        margin-left: 5px;
-        font-size: 12px;
-    }
-    div {
-        flex-grow: 2;
-    }
-    .edit {
-        color:black;
-        margin-right: 10px;
-        cursor:pointer;
-        text-decoration: none;
-    }
-    .remove {
-        color:red;
-        margin-right: 5px;
-        cursor:pointer;
-        text-decoration: none;
-    }
-}
-
-.show {
-    margin-top: 20px;
-    a {
-        text-decoration: none;
-        color: gray;
-        font-weight: bold;
-    }
-}
-
 .error {
     color: red;
 }
 
-.success {
-    color: green;
-}
-
-.no-item {
-    text-align: center;
-}
+// form {
+//     color: black;
+//     position: absolute;
+//     top:50%;
+//     left: 50%;
+//     width: 600px;
+//     padding: 30px;
+//     transform: translate(-50%,-50%);
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center; 
+// }
