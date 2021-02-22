@@ -1,6 +1,10 @@
-<form action="/reset" method="post">
-    
-    <input type="email" name="email" placeholder="Your email">
-    <button type="submit">Send link</button>
-    
-</form>
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('head.ejs') %>  
+    <body>
+        <form action="/reset" method="post" class="send-link">
+            <input type="email" name="email" placeholder="Your email">
+            <button type="submit">Send link</button>
+        </form>
+    </body>
+</html>
