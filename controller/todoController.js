@@ -3,7 +3,7 @@ const User = require('../model/user');
 
 
 const todoRender = async(req, res) => {
-    //const user = await User.findOne({_id:req.user.user._id});
+    console.log("todoRender");
 
     const sorted = +req.query.sorted || -1;
     const page = +req.query.page || 1;
@@ -21,8 +21,13 @@ const todoRender = async(req, res) => {
         });
 
 
-    console.log(user);
+    console.log(req.user);
     
+    if(!user) {
+        console.log("No such user. going to register")
+        return res.redirect('/register');
+    } 
+
     const reachedMaxItems = itemsToShow > user.todoList.length;
 
     const items = user.todoList;
@@ -55,7 +60,7 @@ const todoSubmit = async (req, res) => {
 
         const user = await User.findOne({_id:req.user.user._id});
 
-        user.addTodoList(todo._id);
+        user.addTodoItem(todo._id);
         
         await Todo.find().limit(itemsToShow);
         
@@ -79,6 +84,8 @@ const todoEdit = async (req,res) => {
 
 const todoRemove = async (req, res) => {
     const id = req.params.id;
+    const user = await User.findOne({_id:req.user.user._id});
+    user.removeTodoItem(id);
     
     await Todo.findByIdAndRemove(id, {task: req.body.task}, () => {  
         res.redirect("/?page=" + req.query.page + "&sorted=" + req.query.sorted);

@@ -16,8 +16,13 @@ const userSchema = new mongoose.Schema({
 
 })
 
-userSchema.methods.addTodoList = function(todoId) {
+userSchema.methods.addTodoItem = function(todoId) {
     this.todoList.push(todoId);
+    this.save();
+}
+
+userSchema.methods.removeTodoItem = function(todoId) {
+    this.todoList = this.todoList.filter( todo => todo._id != todoId);
     this.save();
 }
 
