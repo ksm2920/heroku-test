@@ -8,10 +8,11 @@
                 <input type="email" name="email" id="" placeholder="Email">
                 <input type="password" name="password" id="" placeholder="Password">
                 <button type="submit">Register</button>
+                <% if(error) { %>
+                    <p class="error"><%= error %></p>
+                <% } %>
             </div>
-            <% if(error) { %>
-                <div class="error"><%= error %></div>
-            <% } %>
+        
             <div class="register-link">
                 <p>Already have an account? <a href="/login">Login</a></p>
             </div>
