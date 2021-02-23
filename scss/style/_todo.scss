@@ -1,6 +1,7 @@
 .user {
     margin: 10px;
     float: right; 
+    color: white;
 }
 
 button {
@@ -13,15 +14,19 @@ button {
 }
 
 #logout{
-    padding: 10px;
-    text-decoration: none;
-    color: white;
+    margin-left: 10px;
     font-family: 'Montserrat', sans-serif;
+    background-color: gray;
+    a {
+        text-decoration: none;
+        color: white;
+        padding: 10PX;
+    }
 }
 
 .todo-box {
     color: black;
-    background:rgb(187, 187, 187);
+    background:rgb(235, 235, 235);
     position: absolute;
     top:50%;
     left: 50%;
@@ -97,24 +102,23 @@ button {
         border: none;
         border-radius: 5px;
     }
-    button {
-        color:white;
+    #confirm {
+        color:green;
         border: none;
-        border-radius: 5px;
         cursor: pointer;
         padding: 5px;
-        background-color: green;
+        background-color: white;
+       
     }
-    .cancel {
-        color: white;
+    .remove {
+        color: red;
         text-decoration: none;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         padding: 5px;
-        background-color: gray;
         margin-left: 5px;
-        font-size: 12px;
+        font-size: 15px;
     }
     div {
         flex-grow: 2;
@@ -122,12 +126,6 @@ button {
     .edit {
         color:black;
         margin-right: 10px;
-        cursor:pointer;
-        text-decoration: none;
-    }
-    .remove {
-        color:red;
-        margin-right: 5px;
         cursor:pointer;
         text-decoration: none;
     }
