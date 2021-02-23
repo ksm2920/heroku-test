@@ -37,7 +37,7 @@ const resetSubmit = async(req, res) => {
         from: process.env.TRANSPORT_MAIL,
         to: user.email,
         subject: "Reset your password",
-        html: `<h2>Click<a href = "http://localhost:3000/reset/${user.token}"> Here </a>to reset your password</h2>`
+        html: `<h2>Click<a href =`+ process.env.PORT +`"/reset/${user.token}"> Here </a>to reset your password</h2>`
     })
     res.render('checkMail.ejs');
 }
