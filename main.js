@@ -44,7 +44,7 @@ mongoose.connect(
         }
         console.log("database is connected");
         
-        app.listen(3000, () => {
+        app.listen(process.env.PORT|| 3000, () => {
             console.log("application is running too");
         })
     })

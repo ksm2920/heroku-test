@@ -6,7 +6,7 @@ const verifyToken = (req, res, next) => {
     const token = req.cookies.jwtToken;
     console.log("Verify token")
     if(!token) 
-        return res.render("login.ejs", { error:"You must log in!" })
+        return res.render("login.ejs", { error:"" })
     
     const validUser = jwt.verify(token, process.env.SECRET_KEY)
     

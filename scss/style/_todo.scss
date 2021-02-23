@@ -1,6 +1,7 @@
 .user {
     margin: 10px;
     float: right; 
+    color: white;
 }
 
 button {
@@ -13,10 +14,14 @@ button {
 }
 
 #logout{
-    padding: 10px;
-    text-decoration: none;
-    color: white;
+    margin-left: 10px;
     font-family: 'Montserrat', sans-serif;
+    background-color: gray;
+    a {
+        text-decoration: none;
+        color: white;
+        padding: 10PX;
+    }
 }
 
 .todo-box {
@@ -28,7 +33,7 @@ button {
     width: 600px;
     padding: 30px;
     transform: translate(-50%,-50%);
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -42,7 +47,7 @@ button {
 }
 
 .todo-content {
-    width: 500px;
+    width: 90%;
 }
 
 .todo-input {
@@ -97,24 +102,23 @@ button {
         border: none;
         border-radius: 5px;
     }
-    button {
-        color:white;
+    #confirm {
+        color:green;
         border: none;
-        border-radius: 5px;
         cursor: pointer;
         padding: 5px;
-        background-color: green;
+        background-color: white;
+       
     }
-    .cancel {
-        color: white;
+    .remove {
+        color: red;
         text-decoration: none;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         padding: 5px;
-        background-color: gray;
         margin-left: 5px;
-        font-size: 12px;
+        font-size: 15px;
     }
     div {
         flex-grow: 2;
@@ -122,12 +126,6 @@ button {
     .edit {
         color:black;
         margin-right: 10px;
-        cursor:pointer;
-        text-decoration: none;
-    }
-    .remove {
-        color:red;
-        margin-right: 5px;
         cursor:pointer;
         text-decoration: none;
     }

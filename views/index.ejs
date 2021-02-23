@@ -2,10 +2,10 @@
 <html lang="en">
     <%- include('head.ejs') %>  
     <body>
-        <div class="user">Welcome <span id="username"><%= user.username %></span> <button><a id="logout" href="/logout">Log Out</a></button></div>
+        <div class="user"><span id="username"><%= user.username %></span> <button id="logout"><a href="/logout">Log Out</a></button></div>
         
         <div class="todo-box">
-            <h2>To-Do List</h2>
+            <h2>Todo List</h2>
             <div class="todo-content">
                 <form action="/" method="post" class="todo-input">
                     <input type="text" name="task">
@@ -15,9 +15,9 @@
                 <p class="success"><%=success%></p>
                 <div class="sort">
                     <% if(sorted == 1) { %>
-                    <a href="/?page=<%=page%>&sorted=-1">Oldest first <span class="fas fa-arrow-up"></span></a>
+                    <a href="/?page=<%=page%>&sorted=-1">Oldest first <span class="fas fa-chevron-up"></span></a>
                     <% } else if (sorted == -1) { %></page>
-                    <a href="/?page=<%=page%>&sorted=1">Newest first <span class="fas fa-arrow-down"></span></a>
+                    <a href="/?page=<%=page%>&sorted=1">Newest first <span class="fas fa-chevron-down"></span></a>
                     <% } %>
                 </div>
                 <div class="list">
