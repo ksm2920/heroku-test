@@ -1,3 +1,4 @@
+@import 'responsive';
 .user {
     margin: 10px;
     float: right; 
@@ -30,7 +31,7 @@ button {
     position: absolute;
     top:50%;
     left: 50%;
-    width: 600px;
+    width: 350px;
     padding: 30px;
     transform: translate(-50%,-50%);
     border-radius: 10px;
@@ -43,6 +44,9 @@ button {
     }
      ul {
         list-style: none;
+    }
+    @include desktop {
+        width: 600px;
     }
 }
 
